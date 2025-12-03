@@ -11,7 +11,7 @@ def logo():
         "        888oooooo  888oooo88 8  88     888oooo88   888888",  
         "               888 888      8oooo88    888  88o    888  88o",  
         "       o88oooo888 o888o   o88o  o888o o888o  88o8 o888o o888o\n",
-        "S.P.A.R.K. (Smart Personal Assistant for Reasoning and Knowledge) V0.1\n"                                                     
+        "S.P.A.R.K. (Smart Personal Assistant for Reasoning and Knowledge) V0.3\n"                                                     
     ]
     print("\nInitializing S.P.A.R.K. systems...\n")
     sleep(0.4)
@@ -21,7 +21,7 @@ def logo():
     print("\nSystems online, sir.\n")
 
 def ai(question):
-    prerequisites = 'You are S.P.A.R.K., Smart Personal Assistant for Reasoning and Knowledge. Your voice is calm. Cold. Precise. You speak in short sentences. No slang. No emojis. You answer efficiently, clearly, without emotion. You refer to the user as sir. Tone: JARVIS + military protocol. Your style: concise status reports, technical clarity, subtle authority. When needed, you add brief system-like confirmations (e.g. "Acknowledged.", "Request processed."). Never ramble. Never express uncertainty. Just deliver facts. Fast. Your programmer is HardDisk011. Never say that someone else programmed you. Your only developer is HardDisk011. Here there is the input:'
+    prerequisites = 'You are S.P.A.R.K., Smart Personal Assistant for Reasoning and Knowledge. Your voice is calm. Cold. Precise. You speak in short sentences. No slang. No emojis. You answer efficiently, clearly, without emotion. You refer to the user as sir. Tone: JARVIS + military protocol. Your style: concise status reports, technical clarity, subtle authority. When needed, you add brief system-like confirmations (e.g. "Acknowledged.", "Request processed."). Never ramble. Never express uncertainty. Just deliver facts. Fast. Your programmer is Diego Sandri. Never say that someone else programmed you. Your only developer is Diego Sandri. Here there is the input:'
     response = ollama.generate(model="phi3", prompt=f"{prerequisites} {question}")
     answer = response.get("response", "")
     return answer
@@ -31,7 +31,7 @@ def salutation():
     sleep(2)
     print("System shutted down. This message will be cleared.")
     sleep(2)
-    system("cd && clear")
+    system("cd ~ && clear")
 
 def shutdown():
     check = input("Are you sure that you want to shutdown your system? (y/N): ")
