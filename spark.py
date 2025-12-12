@@ -1,9 +1,20 @@
 from helpers import ai, logo, salutation, shutdown, cpu_temp, battery_status, time_now
 import os
 import time
+from voice import say
+import pyttsx3
 
 os.system("clear")
 logo()
+engine = pyttsx3.init()
+engine.setProperty("rate", 150)
+engine.setProperty("volume", 0.9)
+voices = engine.getProperty("voices")
+
+for index, voice in enumerate(voices):
+    print(f"Voce {index}: {voice.name} - {voice.id}")
+
+engine.setProperty("voice", voices[32].id)
 
 while True:
     try:
@@ -13,11 +24,15 @@ while True:
         break
     try:
         if words[0] == "open":
-            print(f"opening {words[1]}, sir.")
-            try:
-                os.system(words[1])
-            except TypeError:
-                print("This app isn't installed in your system, sir.")
+            if words[1]:
+                print(f"opening {words[1]}, sir.")
+                try:
+                    os.system(words[1])
+                except TypeError:
+                    print("This app isn't installed in your system, sir.")
+            
+            else:
+                print("You need to add an app to open, sir.")
 
         elif words[0] == "mode":
             mode = words[1]
@@ -28,7 +43,7 @@ while True:
             elif mode == "chat" or mode == "chill":
                 print("Just chillax, sir.")
                 time.sleep(1)
-                os.system("spotify && discord&")
+                os.system("discord")
             else:
                 print("I didn't understood your mood, sir")
 
@@ -52,9 +67,11 @@ while True:
         elif words[0] == "time":
             print(time_now())
 
+
         else:  
             answer = ai(question)
             print(answer)
+            say(engine, answer)
             
     except KeyboardInterrupt:
         break
